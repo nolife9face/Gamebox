@@ -1,0 +1,19 @@
+{
+  "name": "nodetronplate",
+  "version": "0.0.1",
+  "description": "Electron with a node server template.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron main.js"
+  },
+  "author": "nolife9face",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.5",
+    "q": "^1.4.1"
+  }
+}
