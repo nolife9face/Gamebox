@@ -1,6 +1,6 @@
 (function() {
     var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/{{appname}}');
+    mongoose.connect('mongodb://localhost/gamebox');
 
     module.exports.createModel = createModel;
 

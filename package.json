@@ -1,7 +1,7 @@
 {
-  "name": "nodetronplate",
+  "name": "gamebox",
   "version": "0.0.1",
-  "description": "Electron with a node server template.",
+  "description": "Desktop app with some society games",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
