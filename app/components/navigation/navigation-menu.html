@@ -1,0 +1,19 @@
+<md-sidenav
+    class="md-sidenav-left navigation-panel"
+    md-component-id="left"
+    md-is-locked-open="true">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+        <md-content>
+            <md-list flex
+                    ng-cloak
+                    class="navigation-panel-menu">
+                <md-list-item>
+                    <md-button ng-repeat="game in gameList">
+                        <span><i class="fa {{game.faClass}} fa-fw"></i>{{game.name}}</span>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-content>
+</md-sidenav>
