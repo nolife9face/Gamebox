@@ -10,7 +10,9 @@
         </div>
     </div>
     <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()">Roll dices</md-button>
+        <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()">
+            <span ng-if="yahtzee.rollingAllowed()">Roll dices</span><span ng-if="!yahtzee.rollingAllowed()">Reset</span>
+        </md-button>
     </div>
     <div layout="row" layout-align="space-around center" layout-padding>
         <div class="dice" ng-repeat="dice in yahtzee.dices | limitTo: 3">

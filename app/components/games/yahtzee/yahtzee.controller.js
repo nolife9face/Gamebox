@@ -7,21 +7,34 @@
 
     function YahtzeeController() {
         var vm = this;
+        var rollsMade = 0;
 
         vm.dices = [];
 
+        vm.rollingAllowed = rollingAllowed;
         vm.rollDices = rollDices;
         vm.keepDice = keepDice;
         vm.unkeepDice = unkeepDice;
 
         initialize();
 
+        function rollingAllowed(){
+            return rollsMade < 3;
+        }
+
         function rollDices(){
-            for (var i = 0; i < 5; i++) {
-                if(!vm.dices[i].kept){
-                    vm.dices[i].value = Math.floor(Math.random() * 6) + 1;
-                    assignClass(vm.dices[i]);
+            if(rollingAllowed()){
+                for (var i = 0; i < 5; i++) {
+                    if(!vm.dices[i].kept){
+                        vm.dices[i].value = Math.floor(Math.random() * 6) + 1;
+                        assignClass(vm.dices[i]);
+                    }
                 }
+                rollsMade++;
+            }
+            else{
+                rollsMade = 0;
+                resetDices();
             }
         }
 
@@ -60,6 +73,12 @@
                 case 6:
                     dice.class = "dice-six";
                     break;
+            }
+        }
+
+        function resetDices(){
+            for (var i = 0; i < 5; i++) {
+                vm.dices[i].kept = false;
             }
         }
     }
