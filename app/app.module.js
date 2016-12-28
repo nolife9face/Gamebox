@@ -11,7 +11,9 @@
             //EXTERNAL DEPENDENCIES
             'ngMaterial',
             //SUBMODULE
-            'app.navigation'
+            'app.home',
+            'app.navigation',
+            'app.games'
         ]);
 
 }());

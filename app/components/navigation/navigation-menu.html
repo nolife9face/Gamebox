@@ -10,7 +10,7 @@
                     ng-cloak
                     class="navigation-panel-menu">
                 <md-list-item>
-                    <md-button ng-repeat="game in gameList">
+                    <md-button ng-repeat="game in gameList" ng-click="loadGame(game.location)">
                         <span><i class="fa {{game.faClass}} fa-fw"></i>{{game.name}}</span>
                     </md-button>
                 </md-list-item>
