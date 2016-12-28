@@ -11,19 +11,31 @@
         vm.dices = [];
 
         vm.rollDices = rollDices;
+        vm.keepDice = keepDice;
+        vm.unkeepDice = unkeepDice;
 
         initialize();
 
         function rollDices(){
             for (var i = 0; i < 5; i++) {
-                vm.dices[i].value = Math.floor(Math.random() * 6) + 1;
-                assignClass(vm.dices[i]);
+                if(!vm.dices[i].kept){
+                    vm.dices[i].value = Math.floor(Math.random() * 6) + 1;
+                    assignClass(vm.dices[i]);
+                }
             }
+        }
+
+        function keepDice(dice){
+            dice.kept = true;
+        }
+
+        function unkeepDice(dice){
+            dice.kept = false;
         }
 
         function initialize(){
             for (var i = 0; i < 5; i++) {
-                vm.dices[i] = {value: i + 1};
+                vm.dices[i] = {value: i + 1, kept: false};
                 assignClass(vm.dices[i]);
             }
         }
