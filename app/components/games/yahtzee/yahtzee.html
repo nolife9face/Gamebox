@@ -1,27 +1,112 @@
-<div data-ng-controller="YahtzeeController as yahtzee">
-    <div layout="row" layout-align="space-around center" layout-padding>
-        <div class="dice" ng-repeat="dice in yahtzee.dices | limitTo: 3">
-            <div class="dice {{dice.class}}" ng-show="!dice.kept" ng-click="yahtzee.keepDice(dice)"></div>
+<div data-ng-controller="YahtzeeController as yahtzee" flex layout="row">
+    <div flex>
+        <table border="1" class="yahtzee-score-grid">
+        <tr>
+            <td class="score-grid-bold"><span>Upper Section</span></td>
+            <td class="score-grid-bold"><span>Points</span></td>
+        </tr>
+        <tr>
+            <td><span>Ones</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Twos</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Threes</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Fours</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Fives</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Sixes</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="score-grid-bold">Total Score</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="score-grid-bold">Bonus. If total score is 63 or over</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2"><span class="score-grid-bold">Lower Section</span></td>
+        </tr>
+        <tr>
+            <td><span>Three of a kind</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Four of a kind</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Full House</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Small Straight</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Large Straight</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>YAHTZEE</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span>Chance</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="score-grid-bold">Total Lower Section</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="score-grid-bold">Total Upper Section</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="score-grid-bold">Grand Total</span></td>
+            <td></td>
+        </tr>
+        </table>
+    </div>
+    <div flex>
+        <div layout="row" layout-align="space-around center" layout-padding>
+            <div class="dice" ng-repeat="dice in yahtzee.dices | limitTo: 3">
+                <div class="dice {{dice.class}}" ng-show="!dice.kept" ng-click="yahtzee.keepDice(dice)"></div>
+            </div>
         </div>
-    </div>
-    <div layout="row" layout-align="space-around center" layout-padding>
-        <div class="dice" ng-repeat="dice in yahtzee.dices" ng-if="$index >= 3">
-            <div class="dice {{dice.class}}" ng-show="!dice.kept" ng-click="yahtzee.keepDice(dice)"></div>
+        <div layout="row" layout-align="space-around center" layout-padding>
+            <div class="dice" ng-repeat="dice in yahtzee.dices" ng-if="$index >= 3">
+                <div class="dice {{dice.class}}" ng-show="!dice.kept" ng-click="yahtzee.keepDice(dice)"></div>
+            </div>
         </div>
-    </div>
-    <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()">
-            <span ng-if="yahtzee.rollingAllowed()">Roll dices</span><span ng-if="!yahtzee.rollingAllowed()">Reset</span>
-        </md-button>
-    </div>
-    <div layout="row" layout-align="space-around center" layout-padding>
-        <div class="dice" ng-repeat="dice in yahtzee.dices | limitTo: 3">
-            <div class="dice {{dice.class}}" ng-show="dice.kept" ng-click="yahtzee.unkeepDice(dice)"></div>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()">
+                <span ng-if="yahtzee.rollingAllowed()">Roll dices</span><span ng-if="!yahtzee.rollingAllowed()">Reset</span>
+            </md-button>
         </div>
-    </div>
-    <div layout="row" layout-align="space-around center" layout-padding>
-        <div class="dice" ng-repeat="dice in yahtzee.dices" ng-if="$index >= 3" >
-            <div class="dice {{dice.class}}" ng-show="dice.kept" ng-click="yahtzee.unkeepDice(dice)"></div>
+        <div layout="row" layout-align="space-around center" layout-padding>
+            <div class="dice" ng-repeat="dice in yahtzee.dices | limitTo: 3">
+                <div class="dice {{dice.class}}" ng-show="dice.kept" ng-click="yahtzee.unkeepDice(dice)"></div>
+            </div>
+        </div>
+        <div layout="row" layout-align="space-around center" layout-padding>
+            <div class="dice" ng-repeat="dice in yahtzee.dices" ng-if="$index >= 3" >
+                <div class="dice {{dice.class}}" ng-show="dice.kept" ng-click="yahtzee.unkeepDice(dice)"></div>
+            </div>
         </div>
     </div>
 </div>

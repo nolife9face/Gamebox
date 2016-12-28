@@ -35,3 +35,12 @@
 .dice-six {
   background-image: url(../assets/dice-six.png);
 }
+.yahtzee-score-grid {
+  height: 100%;
+}
+.yahtzee-score-grid tr td:last-child {
+  width: 60px;
+}
+.yahtzee-score-grid .score-grid-bold {
+  font-weight: bold;
+}
