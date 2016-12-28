@@ -1,9 +1,9 @@
 <div data-ng-controller="YahtzeeController as yahtzee">
     <div layout="row" layout-align="space-around center" layout-padding>
-        <span ng-repeat="dice in yahtzee.dices | limitTo: 3">{{dice.value}}</span>
+        <span class="dice {{dice.class}}" ng-repeat="dice in yahtzee.dices | limitTo: 3"></span>
     </div>
     <div layout="row" layout-align="space-around center" layout-padding>
-        <span ng-repeat="dice in yahtzee.dices" ng-if="$index >= 3">{{dice.value}}</span>
+        <span class="dice {{dice.class}}" ng-repeat="dice in yahtzee.dices" ng-if="$index >= 3"></span>
     </div>
     <div layout="row" layout-align="center center">
         <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()">Roll dices</md-button>

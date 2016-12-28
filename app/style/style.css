@@ -13,3 +13,25 @@
   display: flex;
   align-items: center;
 }
+.dice {
+  width: 64px;
+  height: 64px;
+}
+.dice-one {
+  background-image: url(../assets/dice-one.png);
+}
+.dice-two {
+  background-image: url(../assets/dice-two.png);
+}
+.dice-three {
+  background-image: url(../assets/dice-three.png);
+}
+.dice-four {
+  background-image: url(../assets/dice-four.png);
+}
+.dice-five {
+  background-image: url(../assets/dice-five.png);
+}
+.dice-six {
+  background-image: url(../assets/dice-six.png);
+}
