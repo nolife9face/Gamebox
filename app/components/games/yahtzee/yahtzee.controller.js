@@ -15,6 +15,8 @@
         vm.rollDices = rollDices;
         vm.keepDice = keepDice;
         vm.unkeepDice = unkeepDice;
+        vm.getDiceScore = getDiceScore;
+        vm.getDicesTotalScore = getDicesTotalScore;
 
         initialize();
 
@@ -33,7 +35,6 @@
                 rollsMade++;
             }
             else{
-                rollsMade = 0;
                 resetDices();
             }
         }
@@ -44,6 +45,20 @@
 
         function unkeepDice(dice){
             dice.kept = false;
+        }
+
+        function getDiceScore(value){
+            return _.sumBy(vm.dices, function(dice) { return dice.value === value ? value : 0; });
+        }
+
+        function getDicesTotalScore(){
+            var totalScore = 0;
+
+            for (var i = 1; i <= 6; i++){
+                totalScore += getDiceScore(i)
+            }
+
+            return totalScore;
         }
 
         function initialize(){
@@ -77,6 +92,7 @@
         }
 
         function resetDices(){
+            rollsMade = 0;
             for (var i = 0; i < 5; i++) {
                 vm.dices[i].kept = false;
             }
