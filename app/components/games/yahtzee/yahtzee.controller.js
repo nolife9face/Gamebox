@@ -16,7 +16,9 @@
         vm.keepDice = keepDice;
         vm.unkeepDice = unkeepDice;
         vm.getDiceScore = getDiceScore;
-        vm.getDicesTotalScore = getDicesTotalScore;
+        vm.threeOfAKind = threeOfAKind;
+        vm.fourOfAKind = fourOfAKind;
+        vm.fullHouse = fullHouse;
 
         initialize();
 
@@ -51,14 +53,16 @@
             return _.sumBy(vm.dices, function(dice) { return dice.value === value ? value : 0; });
         }
 
-        function getDicesTotalScore(){
-            var totalScore = 0;
+        function threeOfAKind(){
+            return sameOfAKind(3) || sameOfAKind(4) ? getDicesTotalScore() : 0;
+        }
 
-            for (var i = 1; i <= 6; i++){
-                totalScore += getDiceScore(i)
-            }
+        function fourOfAKind(){
+            return sameOfAKind(4) ? getDicesTotalScore() : 0;
+        }
 
-            return totalScore;
+        function fullHouse(){
+            return sameOfAKind(2) && sameOfAKind(3) ? 25 : 0;
         }
 
         function initialize(){
@@ -96,6 +100,27 @@
             for (var i = 0; i < 5; i++) {
                 vm.dices[i].kept = false;
             }
+        }
+
+        function sameOfAKind(amount){
+            var foundSame = false;
+            var countByDice = _.countBy(vm.dices, 'value');
+
+            for(var i = 1; i <= 6 && !foundSame; i++){
+                foundSame = countByDice[i] === amount;
+            }
+
+            return foundSame;
+        }
+
+        function getDicesTotalScore(){
+            var totalScore = 0;
+
+            for (var i = 1; i <= 6; i++){
+                totalScore += getDiceScore(i)
+            }
+
+            return totalScore;
         }
     }
 })();
