@@ -9,6 +9,7 @@
         var vm = this;
         var rollsMade = 0;
         var turnStarted = false;
+        var scoreSheet = initializeScoreSheet();
 
         vm.dices = [];
 
@@ -25,6 +26,8 @@
         vm.largeStraight = largeStraight;
         vm.yahtzee = yahtzee;
         vm.getDicesTotalScore = getDicesTotalScore;
+        vm.playMove = playMove;
+        vm.wasMovePlayed = wasMovePlayed;
 
         initialize();
 
@@ -106,10 +109,38 @@
             return totalScore;
         }
 
+        function playMove(moveName, score){
+            if(turnStarted){
+                scoreSheet[moveName] = score;
+            }
+        }
+
+        function wasMovePlayed(moveName){
+            return scoreSheet[moveName] !== -1;
+        }
+
         function initialize(){
             for (var i = 0; i < 5; i++) {
                 vm.dices[i] = {value: i + 1, kept: false};
                 assignClass(vm.dices[i]);
+            }
+        }
+
+        function initializeScoreSheet(){
+            return {
+                ones: -1,
+                twos: -1,
+                threes: -1,
+                fours: -1,
+                fives: -1,
+                sixes: -1,
+                threeOfAKind: -1,
+                fourOfAKind: -1,
+                fullHouse: -1,
+                smallStraight: -1,
+                largeStraight: -1,
+                yahtzee: -1,
+                chance: -1
             }
         }
 

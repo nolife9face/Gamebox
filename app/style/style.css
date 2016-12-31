@@ -44,3 +44,9 @@
 .yahtzee-score-grid .score-grid-bold {
   font-weight: bold;
 }
+.yahtzee-score-grid .yahtzee-score-not-played {
+  color: red;
+}
+.yahtzee-score-grid .yahtzee-score {
+  color: green;
+}
