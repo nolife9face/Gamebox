@@ -19,6 +19,8 @@
         vm.threeOfAKind = threeOfAKind;
         vm.fourOfAKind = fourOfAKind;
         vm.fullHouse = fullHouse;
+        vm.smallStraight = smallStraight;
+        vm.largeStraight = largeStraight;
 
         initialize();
 
@@ -65,6 +67,20 @@
             return sameOfAKind(2) && sameOfAKind(3) ? 25 : 0;
         }
 
+        function smallStraight(){
+            var dicesValues = _.map(vm.dices, 'value');
+            dicesValues.sort();
+            dicesValues = _.uniqBy(dicesValues);
+            return hasStraight(dicesValues, 4) || hasStraight(dicesValues, 5) ? 30 : 0;
+        }
+        
+        function largeStraight(){
+            var dicesValues = _.map(vm.dices, 'value');
+            dicesValues.sort();
+            dicesValues = _.uniqBy(dicesValues);
+            return hasStraight(dicesValues, 5) ? 40 : 0;
+        }
+
         function initialize(){
             for (var i = 0; i < 5; i++) {
                 vm.dices[i] = {value: i + 1, kept: false};
@@ -106,11 +122,24 @@
             var foundSame = false;
             var countByDice = _.countBy(vm.dices, 'value');
 
-            for(var i = 1; i <= 6 && !foundSame; i++){
-                foundSame = countByDice[i] === amount;
-            }
+            foundSame = _.some(countByDice, function(diceCount){
+                return diceCount === amount;
+            });
 
             return foundSame;
+        }
+
+        function hasStraight(array, length){
+            var sequences = new Array();
+            sequences[0] = 0;
+
+            for(var i = 1; i < array.length; i++){
+                sequences[i] = (array[i] == array[i-1] + 1) ? (sequences[i-1] + 1) : 0;
+            }
+
+            var maxLength = Math.max.apply({},sequences);
+
+            return maxLength + 1 === length;
         }
 
         function getDicesTotalScore(){
