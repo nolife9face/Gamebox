@@ -27,6 +27,7 @@
         vm.yahtzee = yahtzee;
         vm.getDicesTotalScore = getDicesTotalScore;
         vm.playMove = playMove;
+        vm.getMoveScore = getMoveScore;
         vm.wasMovePlayed = wasMovePlayed;
 
         initialize();
@@ -110,8 +111,45 @@
         }
 
         function playMove(moveName, score){
-            if(turnStarted){
+            if(turnStarted && !wasMovePlayed(moveName)){
                 scoreSheet[moveName] = score;
+                resetDices();
+            }
+        }
+
+        function getMoveScore(moveName){
+            if(wasMovePlayed(moveName)){
+                return scoreSheet[moveName];
+            }
+            else{
+                switch(moveName){
+                    case 'ones':
+                        return getDiceScore(1);
+                    case 'twos':
+                        return getDiceScore(2);
+                    case 'threes':
+                        return getDiceScore(3);
+                    case 'fours':
+                        return getDiceScore(4);
+                    case 'fives':
+                        return getDiceScore(5);
+                    case 'sixes':
+                        return getDiceScore(6);
+                    case 'threeOfAKind':
+                        return threeOfAKind();                    
+                    case 'fourOfAKind':
+                        return fourOfAKind();
+                    case 'fullHouse':
+                        return fullHouse();
+                    case 'smallStraight':
+                        return smallStraight();
+                    case 'largeStraight':
+                        return largeStraight();
+                    case 'yahtzee':
+                        return yahtzee();
+                    case 'chance':
+                        return getDicesTotalScore();
+                }
             }
         }
 
@@ -169,6 +207,7 @@
 
         function resetDices(){
             rollsMade = 0;
+            turnStarted = false;
             for (var i = 0; i < 5; i++) {
                 vm.dices[i].kept = false;
             }

@@ -45,6 +45,7 @@
   font-weight: bold;
 }
 .yahtzee-score-grid .yahtzee-score-not-played {
+  cursor: pointer;
   color: red;
 }
 .yahtzee-score-grid .yahtzee-score {
