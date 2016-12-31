@@ -49,37 +49,37 @@
         <tr>
             <td><span>Three of a kind</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('threeOfAKind'), 'yahtzee-score': yahtzee.wasMovePlayed('threeOfAKind') }" 
-                ng-click="yahtzee.playMove('threeOfAKind', yahtzee.threeOfAKind())" ng-if="yahtzee.wasMovePlayed('threeOfAKind') || yahtzee.showScore()">{{yahtzee.threeOfAKind()}}</span></td>
+                ng-click="yahtzee.playMove('threeOfAKind', yahtzee.threeOfAKind())" ng-if="yahtzee.wasMovePlayed('threeOfAKind') || yahtzee.showScore()">{{yahtzee.getMoveScore('threeOfAKind')}}</span></td>
         </tr>
         <tr>
             <td><span>Four of a kind</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('fourOfAKind'), 'yahtzee-score': yahtzee.wasMovePlayed('fourOfAKind') }" 
-                ng-click="yahtzee.playMove('fourOfAKind', yahtzee.fourOfAKind())" ng-if="yahtzee.wasMovePlayed('fourOfAKind') || yahtzee.showScore()">{{yahtzee.fourOfAKind()}}</span></td>
+                ng-click="yahtzee.playMove('fourOfAKind', yahtzee.fourOfAKind())" ng-if="yahtzee.wasMovePlayed('fourOfAKind') || yahtzee.showScore()">{{yahtzee.getMoveScore('fourOfAKind')}}</span></td>
         </tr>
         <tr>
             <td><span>Full House</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('fullHouse'), 'yahtzee-score': yahtzee.wasMovePlayed('fullHouse') }" 
-                ng-click="yahtzee.playMove('fullHouse', yahtzee.fullHouse())" ng-if="yahtzee.wasMovePlayed('fullHouse') || yahtzee.showScore()">{{yahtzee.fullHouse()}}</span></td>
+                ng-click="yahtzee.playMove('fullHouse', yahtzee.fullHouse())" ng-if="yahtzee.wasMovePlayed('fullHouse') || yahtzee.showScore()">{{yahtzee.getMoveScore('fullHouse')}}</span></td>
         </tr>
         <tr>
             <td><span>Small Straight</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('smallStraight'), 'yahtzee-score': yahtzee.wasMovePlayed('smallStraight') }" 
-                ng-click="yahtzee.playMove('smallStraight', yahtzee.smallStraight())" ng-if="yahtzee.wasMovePlayed('smallStraight') || yahtzee.showScore()">{{yahtzee.smallStraight()}}</span></td>
+                ng-click="yahtzee.playMove('smallStraight', yahtzee.smallStraight())" ng-if="yahtzee.wasMovePlayed('smallStraight') || yahtzee.showScore()">{{yahtzee.getMoveScore('smallStraight')}}</span></td>
         </tr>
         <tr>
             <td><span>Large Straight</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('largeStraight'), 'yahtzee-score': yahtzee.wasMovePlayed('largeStraight') }" 
-                ng-click="yahtzee.playMove('largeStraight', yahtzee.largeStraight())" ng-if="yahtzee.wasMovePlayed('largeStraight') || yahtzee.showScore()">{{yahtzee.largeStraight()}}</span></td>
+                ng-click="yahtzee.playMove('largeStraight', yahtzee.largeStraight())" ng-if="yahtzee.wasMovePlayed('largeStraight') || yahtzee.showScore()">{{yahtzee.getMoveScore('largeStraight')}}</span></td>
         </tr>
         <tr>
             <td><span>YAHTZEE</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('yahtzee'), 'yahtzee-score': yahtzee.wasMovePlayed('yahtzee') }" 
-                ng-click="yahtzee.playMove('yahtzee', yahtzee.yahtzee())" ng-if="yahtzee.wasMovePlayed('yahtzee') || yahtzee.showScore()">{{yahtzee.yahtzee()}}</span></td>
+                ng-click="yahtzee.playMove('yahtzee', yahtzee.yahtzee())" ng-if="yahtzee.wasMovePlayed('yahtzee') || yahtzee.showScore()">{{yahtzee.getMoveScore('yahtzee')}}</span></td>
         </tr>
         <tr>
             <td><span>Chance</span></td>
             <td><span ng-class="{'yahtzee-score-not-played': !yahtzee.wasMovePlayed('chance'), 'yahtzee-score': yahtzee.wasMovePlayed('chance') }" 
-                ng-click="yahtzee.playMove('chance', yahtzee.getDicesTotalScore())" ng-if="yahtzee.wasMovePlayed('chance') || yahtzee.showScore()">{{yahtzee.getDicesTotalScore()}}</span></td>
+                ng-click="yahtzee.playMove('chance', yahtzee.getDicesTotalScore())" ng-if="yahtzee.wasMovePlayed('chance') || yahtzee.showScore()">{{yahtzee.getMoveScore('chance')}}</span></td>
         </tr>
         <tr>
             <td><span class="score-grid-bold">Total Lower Section</span></td>
@@ -107,8 +107,8 @@
             </div>
         </div>
         <div layout="row" layout-align="center center">
-            <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()">
-                <span ng-if="yahtzee.rollingAllowed()">Roll dices</span><span ng-if="!yahtzee.rollingAllowed()">Reset</span>
+            <md-button class="md-raised md-primary" aria-label="rollDices" ng-click="yahtzee.rollDices()" ng-disabled="!yahtzee.rollingAllowed()">
+                <span>Roll dices</span>
             </md-button>
         </div>
         <div layout="row" layout-align="space-around center" layout-padding>
