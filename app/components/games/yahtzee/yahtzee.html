@@ -7,27 +7,27 @@
         </tr>
         <tr>
             <td><span>Ones</span></td>
-            <td>{{yahtzee.getDiceScore(1)}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDiceScore(1)}}</span></td>
         </tr>
         <tr>
             <td><span>Twos</span></td>
-            <td>{{yahtzee.getDiceScore(2)}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDiceScore(2)}}</span></td>
         </tr>
         <tr>
             <td><span>Threes</span></td>
-            <td>{{yahtzee.getDiceScore(3)}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDiceScore(3)}}</span></td>
         </tr>
         <tr>
             <td><span>Fours</span></td>
-            <td>{{yahtzee.getDiceScore(4)}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDiceScore(4)}}</span></td>
         </tr>
         <tr>
             <td><span>Fives</span></td>
-            <td>{{yahtzee.getDiceScore(5)}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDiceScore(5)}}</span></td>
         </tr>
         <tr>
             <td><span>Sixes</span></td>
-            <td>{{yahtzee.getDiceScore(6)}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDiceScore(6)}}</span></td>
         </tr>
         <tr>
             <td><span class="score-grid-bold">Total Score</span></td>
@@ -42,31 +42,31 @@
         </tr>
         <tr>
             <td><span>Three of a kind</span></td>
-            <td><span>{{yahtzee.threeOfAKind()}}</span></td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.threeOfAKind()}}</span></td>
         </tr>
         <tr>
             <td><span>Four of a kind</span></td>
-            <td><span>{{yahtzee.fourOfAKind()}}</span></td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.fourOfAKind()}}</span></td>
         </tr>
         <tr>
             <td><span>Full House</span></td>
-            <td>{{yahtzee.fullHouse()}}</td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.fullHouse()}}</span></td>
         </tr>
         <tr>
             <td><span>Small Straight</span></td>
-            <td><span>{{yahtzee.smallStraight()}}</span></td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.smallStraight()}}</span></td>
         </tr>
         <tr>
             <td><span>Large Straight</span></td>
-            <td><span>{{yahtzee.largeStraight()}}</span></td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.largeStraight()}}</span></td>
         </tr>
         <tr>
             <td><span>YAHTZEE</span></td>
-            <td><span>{{yahtzee.yahtzee()}}</span></td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.yahtzee()}}</span></td>
         </tr>
         <tr>
             <td><span>Chance</span></td>
-            <td><span>{{yahtzee.getDicesTotalScore()}}</span></td>
+            <td><span ng-if="yahtzee.showScore()">{{yahtzee.getDicesTotalScore()}}</span></td>
         </tr>
         <tr>
             <td><span class="score-grid-bold">Total Lower Section</span></td>

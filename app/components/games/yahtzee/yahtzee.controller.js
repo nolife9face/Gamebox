@@ -8,6 +8,7 @@
     function YahtzeeController() {
         var vm = this;
         var rollsMade = 0;
+        var turnStarted = false;
 
         vm.dices = [];
 
@@ -15,6 +16,7 @@
         vm.rollDices = rollDices;
         vm.keepDice = keepDice;
         vm.unkeepDice = unkeepDice;
+        vm.showScore = showScore;
         vm.getDiceScore = getDiceScore;
         vm.threeOfAKind = threeOfAKind;
         vm.fourOfAKind = fourOfAKind;
@@ -32,6 +34,7 @@
 
         function rollDices(){
             if(rollingAllowed()){
+                turnStarted = true;
                 for (var i = 0; i < 5; i++) {
                     if(!vm.dices[i].kept){
                         vm.dices[i].value = Math.floor(Math.random() * 6) + 1;
@@ -46,11 +49,17 @@
         }
 
         function keepDice(dice){
-            dice.kept = true;
+            if(turnStarted){
+                dice.kept = true;
+            }
         }
 
         function unkeepDice(dice){
             dice.kept = false;
+        }
+
+        function showScore(){
+            return turnStarted;
         }
 
         function getDiceScore(value){
