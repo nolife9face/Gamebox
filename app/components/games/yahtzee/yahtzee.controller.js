@@ -21,6 +21,8 @@
         vm.fullHouse = fullHouse;
         vm.smallStraight = smallStraight;
         vm.largeStraight = largeStraight;
+        vm.yahtzee = yahtzee;
+        vm.getDicesTotalScore = getDicesTotalScore;
 
         initialize();
 
@@ -79,6 +81,20 @@
             dicesValues.sort();
             dicesValues = _.uniqBy(dicesValues);
             return hasStraight(dicesValues, 5) ? 40 : 0;
+        }
+
+        function yahtzee(){
+            return sameOfAKind(5) ? 50 : 0;
+        }
+
+        function getDicesTotalScore(){
+            var totalScore = 0;
+
+            for (var i = 1; i <= 6; i++){
+                totalScore += getDiceScore(i)
+            }
+
+            return totalScore;
         }
 
         function initialize(){
@@ -140,16 +156,6 @@
             var maxLength = Math.max.apply({},sequences);
 
             return maxLength + 1 === length;
-        }
-
-        function getDicesTotalScore(){
-            var totalScore = 0;
-
-            for (var i = 1; i <= 6; i++){
-                totalScore += getDiceScore(i)
-            }
-
-            return totalScore;
         }
     }
 })();
