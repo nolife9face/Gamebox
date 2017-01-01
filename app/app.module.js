@@ -13,7 +13,8 @@
             //SUBMODULE
             'app.home',
             'app.navigation',
-            'app.games'
+            'app.games',
+            'app.shared'
         ]);
 
 }());

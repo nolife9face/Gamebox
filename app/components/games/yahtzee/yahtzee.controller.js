@@ -5,7 +5,9 @@
         .module('games.yahtzee')
         .controller('YahtzeeController', YahtzeeController);
 
-    function YahtzeeController() {
+    YahtzeeController.$inject = ['serverApi'];
+
+    function YahtzeeController(serverApi) {
         var vm = this;
         var rollsMade = 0;
         var turnStarted = false;
@@ -37,6 +39,7 @@
         vm.lowerSectionTotal = lowerSectionTotal;
         vm.showGrandTotal = showGrandTotal;
         vm.grandTotal = grandTotal;
+        vm.saveGame = saveGame;
 
         initialize();
 
@@ -209,6 +212,10 @@
 
         function grandTotal(){
             return upperSectionTotal() + lowerSectionTotal();
+        }
+
+        function saveGame(){
+            serverApi.post('http://localhost:8080/api/saveYahtzee', {total: grandTotal(), bonus: upperSectionBonus()});
         }
 
         function initialize(){

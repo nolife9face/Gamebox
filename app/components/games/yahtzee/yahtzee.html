@@ -125,5 +125,8 @@
                 <div class="dice {{dice.class}}" ng-show="dice.kept" ng-click="yahtzee.unkeepDice(dice)"></div>
             </div>
         </div>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary" aria-label="saveGame" ng-if="yahtzee.showGrandTotal()" ng-click="yahtzee.saveGame()"> Save Game </md-button>
+        </div>
     </div>
 </div>
