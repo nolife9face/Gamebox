@@ -29,6 +29,14 @@
         vm.playMove = playMove;
         vm.getMoveScore = getMoveScore;
         vm.wasMovePlayed = wasMovePlayed;
+        vm.showUpperSectionTotal = showUpperSectionTotal;
+        vm.upperSectionTotal = upperSectionTotal;
+        vm.upperSectionBonus = upperSectionBonus;
+        vm.upperSectionGrandTotal = upperSectionGrandTotal;
+        vm.showLowerSectionTotal = showLowerSectionTotal;
+        vm.lowerSectionTotal = lowerSectionTotal;
+        vm.showGrandTotal = showGrandTotal;
+        vm.grandTotal = grandTotal;
 
         initialize();
 
@@ -155,6 +163,52 @@
 
         function wasMovePlayed(moveName){
             return scoreSheet[moveName] !== -1;
+        }
+
+        function showUpperSectionTotal(){
+            var playedAllUpperSectionMove = (scoreSheet['ones'] !== -1 && scoreSheet['twos'] !== -1 && scoreSheet['threes'] !== -1 
+                && scoreSheet['fours'] !== -1 && scoreSheet['fives'] !== -1 && scoreSheet['sixes'] !== -1);
+
+            return playedAllUpperSectionMove;
+        }
+
+        function upperSectionTotal(){
+            var upperSectionTotal = scoreSheet['ones'] + scoreSheet['twos'] + scoreSheet['threes'] 
+                + scoreSheet['fours'] + scoreSheet['fives'] + scoreSheet['sixes'];
+
+            return upperSectionTotal;
+        }
+
+        function upperSectionBonus(){
+            return upperSectionTotal() >= 63 ? 35 : 0;
+        }
+
+        function upperSectionGrandTotal(){
+            return upperSectionTotal() + upperSectionBonus();
+        }
+
+        function showLowerSectionTotal(){
+            var playedAllLowerSectionMove = (scoreSheet['threeOfAKind'] !== -1 && scoreSheet['fourOfAKind'] !== -1 && scoreSheet['fullHouse'] !== -1 
+                && scoreSheet['smallStraight'] !== -1 && scoreSheet['largeStraight'] !== -1 && scoreSheet['yahtzee'] !== -1 && scoreSheet['chance'] !== -1);
+
+            return playedAllLowerSectionMove;
+        }
+
+        function lowerSectionTotal(){
+            var lowerSectionTotal = scoreSheet['threeOfAKind'] + scoreSheet['fourOfAKind'] + scoreSheet['fullHouse'] 
+                + scoreSheet['smallStraight'] + scoreSheet['largeStraight'] + scoreSheet['yahtzee'] + scoreSheet['chance'];
+
+            return lowerSectionTotal;
+        }
+
+        function showGrandTotal(){
+            return !_.some(scoreSheet, function(score){
+                return score === -1;
+            })
+        }
+
+        function grandTotal(){
+            return upperSectionTotal() + lowerSectionTotal();
         }
 
         function initialize(){

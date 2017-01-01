@@ -37,11 +37,15 @@
         </tr>
         <tr>
             <td><span class="score-grid-bold">Total Score</span></td>
-            <td></td>
+            <td><span ng-if="yahtzee.showUpperSectionTotal()">{{yahtzee.upperSectionTotal()}}</span></td>
         </tr>
         <tr>
             <td><span class="score-grid-bold">Bonus. If total score is 63 or over</span></td>
-            <td></td>
+            <td><span ng-if="yahtzee.showUpperSectionTotal()">{{yahtzee.upperSectionBonus()}}</span></td>
+        </tr>
+        <tr>
+            <td><span class="score-grid-bold">Upper Total</span></td>
+            <td><span ng-if="yahtzee.showUpperSectionTotal()">{{yahtzee.upperSectionGrandTotal()}}</span></td>
         </tr>
         <tr>
             <td colspan="2"><span class="score-grid-bold">Lower Section</span></td>
@@ -83,15 +87,15 @@
         </tr>
         <tr>
             <td><span class="score-grid-bold">Total Lower Section</span></td>
-            <td></td>
+            <td><span ng-if="yahtzee.showLowerSectionTotal()">{{yahtzee.lowerSectionTotal()}}</span></td>
         </tr>
         <tr>
             <td><span class="score-grid-bold">Total Upper Section</span></td>
-            <td></td>
+            <td><span ng-if="yahtzee.showUpperSectionTotal()">{{yahtzee.upperSectionTotal()}}</span></td>
         </tr>
         <tr>
             <td><span class="score-grid-bold">Grand Total</span></td>
-            <td></td>
+            <td><span ng-if="yahtzee.showGrandTotal()">{{yahtzee.grandTotal()}}</span></td>
         </tr>
         </table>
     </div>
