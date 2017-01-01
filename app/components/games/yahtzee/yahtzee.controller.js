@@ -211,7 +211,7 @@
         }
 
         function grandTotal(){
-            return upperSectionTotal() + lowerSectionTotal();
+            return upperSectionGrandTotal() + lowerSectionTotal();
         }
 
         function saveGame(){
