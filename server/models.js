@@ -16,8 +16,6 @@
     });
 
     function saveYahtzeeGame(total, bonus){
-        yahtzeeGame.create({ totalScore: total, bonusGotten: bonus === 35 }, function (err, newThing) {
-            
-        });
+        yahtzeeGame.create({ totalScore: total, bonusGotten: bonus === 35 }, function (err, newThing) {});
     }
 }());

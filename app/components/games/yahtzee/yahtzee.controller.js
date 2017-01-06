@@ -5,15 +5,16 @@
         .module('games.yahtzee')
         .controller('YahtzeeController', YahtzeeController);
 
-    YahtzeeController.$inject = ['serverApi'];
+    YahtzeeController.$inject = ['serverApi', 'dialogApi'];
 
-    function YahtzeeController(serverApi) {
+    function YahtzeeController(serverApi, dialogApi) {
         var vm = this;
         var rollsMade = 0;
         var turnStarted = false;
-        var scoreSheet = initializeScoreSheet();
+        var scoreSheet = {};
 
         vm.dices = [];
+        vm.gameSaved = false;
 
         vm.rollingAllowed = rollingAllowed;
         vm.rollDices = rollDices;
@@ -215,7 +216,20 @@
         }
 
         function saveGame(){
-            serverApi.post('http://localhost:8080/api/saveYahtzee', {total: grandTotal(), bonus: upperSectionBonus()});
+            serverApi.post('http://localhost:8080/api/saveYahtzee', {total: grandTotal(), bonus: upperSectionBonus()})
+            .then(function(){
+                dialogApi.confirm('New Game', 
+                    'Do you wan\'t to play a new game?', 'yahtzeeNewGame', 
+                    'Yes', 
+                    'No')
+                    .then(function(){
+                        initializeScoreSheet();
+                        resetDices();
+                    },
+                    function(){
+                        vm.gameSaved =true;
+                    });
+            });
         }
 
         function initialize(){
@@ -223,10 +237,12 @@
                 vm.dices[i] = {value: i + 1, kept: false};
                 assignClass(vm.dices[i]);
             }
+            initializeScoreSheet();
         }
 
         function initializeScoreSheet(){
-            return {
+            vm.gameSaved = false;
+            scoreSheet = {
                 ones: -1,
                 twos: -1,
                 threes: -1,

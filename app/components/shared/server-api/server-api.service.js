@@ -13,7 +13,7 @@
         vm.post = post;
 
         function post(url, content){
-            $http.post(url, content);
+            return $http.post(url, content);
         }
     }
 })();

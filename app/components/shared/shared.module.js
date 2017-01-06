@@ -3,6 +3,7 @@
 
     angular
         .module('app.shared', [
-            'shared.server-api'
+            'shared.server-api',
+            'shared.dialog-api'
         ]);
 }());

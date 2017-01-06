@@ -18,5 +18,6 @@
         var total = req.body.total;
         var bonus = req.body.bonus;
         models.saveYahtzeeGame(total, bonus);
+        res.sendStatus(200);
     });
 }());
