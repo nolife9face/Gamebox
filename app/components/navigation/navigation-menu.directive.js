@@ -19,6 +19,7 @@
         
         function link(scope, element, attrs) {
             scope.gameList = initializeGameList();
+            scope.statList = initializeStatList();
 
             scope.loadGame = loadGame;
 
@@ -31,10 +32,19 @@
              */
             function initializeGameList(){
                 return [{
-                    name: 'Yahtzee',
-                    location: '../app/components/games/yahtzee/yahtzee.html',
-                    faClass: 'fa-y-combinator'
-                }]
+                        name: 'Yahtzee',
+                        location: '../app/components/games/yahtzee/yahtzee.html',
+                        faClass: 'fa-y-combinator'
+                    }
+                ]
+            }
+
+            function initializeStatList(){
+                return [{
+                        name: 'Yahtzee',
+                        location: '../app/components/stats/yahtzee/yahtzee-stats.html',
+                        faClass: 'fa-y-combinator'
+                    }]
             }
         }
     }
