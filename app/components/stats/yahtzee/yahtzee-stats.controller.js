@@ -3,11 +3,20 @@
 
     angular
         .module('stats.yahtzee')
-        .controller('yahtzeeStatsController', yahtzeeStatsController);
+        .controller('YahtzeeStatsController', YahtzeeStatsController);
 
-    function yahtzeeStatsController() {
+    YahtzeeStatsController.$inject = ['serverApi'];
+
+    function YahtzeeStatsController(serverApi) {
         var vm = this;
 
-        
+        initialize();
+
+        function initialize(){
+            serverApi.get('http://localhost:8080/api/yahtzeeStats')
+            .then(function(results){
+
+            });
+        }        
     }
 })();
