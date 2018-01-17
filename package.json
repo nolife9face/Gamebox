@@ -3,11 +3,14 @@
   "version": "0.0.1",
   "description": "Desktop app with some society games",
   "main": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pnolin/Gamebox"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron main.js"
   },
-  "author": "nolife9face",
+  "author": "pnolin",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.10",
