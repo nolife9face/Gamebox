@@ -20,4 +20,11 @@
         models.saveYahtzeeGame(total, bonus);
         res.sendStatus(200);
     });
+
+    app.get('/api/yahtzeeStats', function(req, res){
+        models.getYahtzeeStats()
+        .then(function(stats){
+            res.json(stats);
+        })
+    });
 }());

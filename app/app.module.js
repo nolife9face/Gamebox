@@ -14,6 +14,7 @@
             'app.home',
             'app.navigation',
             'app.games',
+            'app.stats',
             'app.shared'
         ]);
 

@@ -18,7 +18,9 @@
         return directive;
         
         function link(scope, element, attrs) {
+            scope.menuItems = initializeMenuItems();
             scope.gameList = initializeGameList();
+            scope.statList = initializeStatList();
 
             scope.loadGame = loadGame;
 
@@ -26,15 +28,28 @@
                 navigationApi.currentPage = location;
             }
 
+            function initializeMenuItems(){
+                _.concat(initializeGameList, initializeStatList);
+            }
+
             /**
              * Initialize the game list. 
              */
             function initializeGameList(){
                 return [{
-                    name: 'Yahtzee',
-                    location: '../app/components/games/yahtzee/yahtzee.html',
-                    faClass: 'fa-y-combinator'
-                }]
+                        name: 'Yahtzee',
+                        location: '../app/components/games/yahtzee/yahtzee.html',
+                        faClass: 'fa-y-combinator'
+                    }
+                ]
+            }
+
+            function initializeStatList(){
+                return [{
+                        name: 'Stats',
+                        location: '../app/components/stats/stats.html',
+                        faClass: 'fa-y-combinator'
+                    }]
             }
         }
     }

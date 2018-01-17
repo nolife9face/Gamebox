@@ -1,0 +1,16 @@
+<div ng-controller="YahtzeeStatsController as yahtzeeStats">
+    <md-card>
+      <md-card-content>
+        <h2>Yahtzee</h2>
+        <div layout="column" layout-align="center start">
+            <ul>
+                <li>Total game played: {{yahtzeeStats.yahtzeeStats.totalGamePlayed}}</li>
+                <li>Average Score: {{yahtzeeStats.yahtzeeStats.averageScore}}</li>
+                <li>Max Score: {{yahtzeeStats.yahtzeeStats.maxScore}}</li>
+                <li>Min Score: {{yahtzeeStats.yahtzeeStats.minScore}}</li>
+                <li>Number of bonus gotten: {{yahtzeeStats.yahtzeeStats.numberOfBonus}} ({{yahtzeeStats.yahtzeeStats.bonusPercentage}}%)</li>
+            </ul>
+        </div>
+      </md-card-content>
+    </md-card>
+</div>

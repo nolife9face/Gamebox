@@ -9,9 +9,14 @@
             <md-list flex
                     ng-cloak
                     class="navigation-panel-menu">
-                <md-list-item>
-                    <md-button ng-repeat="game in gameList" ng-click="loadGame(game.location)">
+                <md-list-item ng-repeat="game in gameList" >
+                    <md-button ng-click="loadGame(game.location)">
                         <span><i class="fa {{game.faClass}} fa-fw"></i>{{game.name}}</span>
+                    </md-button>
+                </md-list-item>
+                <md-list-item ng-repeat="stat in statList" >
+                    <md-button ng-click="loadGame(stat.location)">
+                        <span><i class="fa {{stat.faClass}} fa-fw"></i>{{stat.name}}</span>
                     </md-button>
                 </md-list-item>
             </md-list>

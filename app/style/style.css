@@ -13,6 +13,11 @@
   display: flex;
   align-items: center;
 }
+.navigation-panel .navigation-panel-menu .menu-title {
+  height: 55px;
+  padding-left: 10px;
+  font-weight: bold;
+}
 .dice {
   width: 64px;
   height: 64px;
