@@ -1,5 +1,12 @@
-<div data-ng-controller="MastermindController as mastermind" flex layout="row">
-    <div flex>
-        {{mastermind.text}}
+<div data-ng-controller="MastermindController as mastermind" flex layout="column">
+    <div data-ng-repeat="(key, value) in mastermind.guesses" 
+        class="mastermind-table" flex layout="row" layout-align="center center">
+        <div flex="20" class="mastermind-cell"></div>
+        <div flex="60" class="mastermind-guesses" layout="row" layout-align="space-around center">
+            <div flex="20" class="mastermind-guess" data-ng-repeat="(color, guess) in value.colors track by $index">
+                
+            </div>
+        </div>
+        <div flex="20" class="mastermind-cell"></div>
     </div>
 </div>

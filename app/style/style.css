@@ -56,3 +56,32 @@
 .yahtzee-score-grid .yahtzee-score {
   color: green;
 }
+
+.mastermind-table {
+  width: 75%;
+  align-self: center;
+  display: flex;
+  flex: 1;
+  border: 1px solid black;
+}
+
+.mastermind-table .mastermind-cell,
+.mastermind-table .mastermind-guess,
+.mastermind-table .mastermind-guesses{
+  display: flex;
+  flex: 1;
+  height: 100%
+}
+
+.mastermind-table .mastermind-cell:not(:last-child) {
+  border-right: 1px solid black;
+}
+
+.mastermind-table .mastermind-cell:last-child {
+  border-left: 1px solid black;
+}
+
+.mastermind-table .mastermind-guess {
+  border: 1px solid black;
+  border-radius: 50%;
+}
