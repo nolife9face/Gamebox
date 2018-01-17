@@ -2,6 +2,9 @@
     'use strict';
 
     angular
-        .module('app.games', ['games.yahtzee']);
+        .module('app.games', [
+            'games.yahtzee',
+            'games.mastermind'
+        ]);
 
 }());

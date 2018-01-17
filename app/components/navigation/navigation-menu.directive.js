@@ -36,10 +36,16 @@
              * Initialize the game list. 
              */
             function initializeGameList(){
-                return [{
+                return [
+                    {
                         name: 'Yahtzee',
                         location: '../app/components/games/yahtzee/yahtzee.html',
                         faClass: 'fa-y-combinator'
+                    },
+                    {
+                        name: 'Mastermind',
+                        location: '../app/components/games/mastermind/mastermind.html',
+                        faClass: 'fa-circle'
                     }
                 ]
             }
