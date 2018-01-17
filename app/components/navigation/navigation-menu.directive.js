@@ -18,6 +18,7 @@
         return directive;
         
         function link(scope, element, attrs) {
+            scope.menuItems = initializeMenuItems();
             scope.gameList = initializeGameList();
             scope.statList = initializeStatList();
 
@@ -25,6 +26,10 @@
 
             function loadGame(location){
                 navigationApi.currentPage = location;
+            }
+
+            function initializeMenuItems(){
+                _.concat(initializeGameList, initializeStatList);
             }
 
             /**
@@ -41,8 +46,8 @@
 
             function initializeStatList(){
                 return [{
-                        name: 'Yahtzee',
-                        location: '../app/components/stats/yahtzee/yahtzee-stats.html',
+                        name: 'Stats',
+                        location: '../app/components/stats/stats.html',
                         faClass: 'fa-y-combinator'
                     }]
             }

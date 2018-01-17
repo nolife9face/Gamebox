@@ -14,9 +14,6 @@
                         <span><i class="fa {{game.faClass}} fa-fw"></i>{{game.name}}</span>
                     </md-button>
                 </md-list-item>
-                <md-divider></md-divider>
-                <div class="menu-title" layout="column" layout-align="center start">Stats</div>
-                <md-divider></md-divider>
                 <md-list-item ng-repeat="stat in statList" >
                     <md-button ng-click="loadGame(stat.location)">
                         <span><i class="fa {{stat.faClass}} fa-fw"></i>{{stat.name}}</span>

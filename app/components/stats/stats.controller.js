@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('stats.yahtzee')
+        .module('app.stats')
         .controller('YahtzeeStatsController', YahtzeeStatsController);
 
     YahtzeeStatsController.$inject = ['serverApi'];

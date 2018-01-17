@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('app.stats', ['stats.yahtzee']);
+        .module('app.stats', []);
 }());
