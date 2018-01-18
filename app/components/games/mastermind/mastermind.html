@@ -3,8 +3,9 @@
         class="mastermind-table" flex layout="row" layout-align="center center">
         <div flex="20" class="mastermind-cell"></div>
         <div flex="60" class="mastermind-guesses" layout="row" layout-align="space-around center">
-            <div flex="20" class="mastermind-guess" data-ng-repeat="(color, guess) in value.colors track by $index">
-                
+            <div flex="20" class="mastermind-guess" data-ng-class="guess.color.name"
+                    data-ng-repeat="(color, guess) in value.colors"
+                    data-ng-click="mastermind.switchColor(guess, value)">
             </div>
         </div>
         <div flex="20" class="mastermind-cell"></div>

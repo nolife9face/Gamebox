@@ -11,14 +11,16 @@
             var maxGuesses = 12;
             var colorPerGuesses = 4;
             var numberOfGuesses = 0;
+            var colors = [];
 
-            vm.colors = [];
             vm.guesses = [];
+
+            vm.switchColor = switchColor;
 
             initialize();
 
             function initialize() {
-                vm.colors = initializeColors();
+                colors = initializeColors();
                 initializeGuesses();
             }
 
@@ -57,9 +59,27 @@
                     guess.row = i;
                     guess.colors = [];
                     for (var j = 0; j < colorPerGuesses; j++) {
-                        guess.colors.push(vm.colors[0]);
+                        var guessColor = {
+                            color: angular.copy(colors[0])
+                        };
+                        guessColor.column = j;
+                        guess.colors.push(angular.copy(guessColor));
                     }
                     vm.guesses.push(angular.copy(guess));
+                }
+
+                vm.guesses = _.reverse(vm.guesses);
+            }
+
+            function switchColor(guess, row) {
+                if (row.row === numberOfGuesses) {
+                    guess.color = angular.copy(_.find(colors, function(color){
+                        return color.value === guess.color.value + 1;
+                    }));
+
+                    if (angular.isUndefined(guess.color)) {
+                        guess.color = angular.copy(colors[0]);
+                    }
                 }
             }
         }

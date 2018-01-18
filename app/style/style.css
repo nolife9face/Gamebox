@@ -70,7 +70,8 @@
 .mastermind-table .mastermind-guesses{
   display: flex;
   flex: 1;
-  height: 100%
+  height: 100%;
+  outline: none;
 }
 
 .mastermind-table .mastermind-cell:not(:last-child) {
@@ -84,4 +85,28 @@
 .mastermind-table .mastermind-guess {
   border: 1px solid black;
   border-radius: 50%;
+}
+
+.mastermind-table .mastermind-guess.red{
+  background-color: red;
+}
+
+.mastermind-table .mastermind-guess.blue{
+  background-color: blue;
+}
+
+.mastermind-table .mastermind-guess.yellow{
+  background-color: yellow;
+}
+
+.mastermind-table .mastermind-guess.green{
+  background-color: green;
+}
+
+.mastermind-table .mastermind-guess.white{
+  background-color: beige;
+}
+
+.mastermind-table .mastermind-guess.black{
+  background-color: black;
 }
