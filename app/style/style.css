@@ -87,6 +87,10 @@
   border-radius: 50%;
 }
 
+.mastermind-table .mastermind-corrects-position {
+  background-color: red;
+}
+
 .mastermind-table .mastermind-guess.red{
   background-color: red;
 }

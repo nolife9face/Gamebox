@@ -10,18 +10,25 @@
 
             var maxGuesses = 12;
             var colorPerGuesses = 4;
-            var numberOfGuesses = 0;
             var colors = [];
+            var answers = [];
 
+            vm.numberOfGuesses = 0;
             vm.guesses = [];
 
             vm.switchColor = switchColor;
+            vm.canGuess = canGuess;
+            vm.guess = guess;
+            vm.colorCorrection = [];
+            vm.colorPositionCorrection = [];
 
             initialize();
 
             function initialize() {
                 colors = initializeColors();
                 initializeGuesses();
+                initializeCorrections();
+                generateAnswer();
             }
 
             function initializeColors() {
@@ -60,19 +67,35 @@
                     guess.colors = [];
                     for (var j = 0; j < colorPerGuesses; j++) {
                         var guessColor = {
-                            color: angular.copy(colors[0])
+                            color: angular.copy(colors[j])
                         };
                         guessColor.column = j;
                         guess.colors.push(angular.copy(guessColor));
                     }
                     vm.guesses.push(angular.copy(guess));
                 }
+            }
 
-                vm.guesses = _.reverse(vm.guesses);
+            function initializeCorrections() {
+                vm.colorCorrection = _.fill(Array(maxGuesses), 0);
+                vm.colorPositionCorrection = _.fill(Array(maxGuesses), 0);
+            }
+
+            function generateAnswer() {
+                var copiedColors = angular.copy(colors);
+                for (var i = 0; i < colorPerGuesses; i++) {
+                    var index = getRandomInt(0, copiedColors.length);
+                    var answer = {
+                        column: i,
+                        color: angular.copy(copiedColors[index])
+                    }
+                    answers.push(answer);
+                    copiedColors.splice(index, 1);
+                }
             }
 
             function switchColor(guess, row) {
-                if (row.row === numberOfGuesses) {
+                if (row.row === vm.numberOfGuesses) {
                     guess.color = angular.copy(_.find(colors, function(color){
                         return color.value === guess.color.value + 1;
                     }));
@@ -81,6 +104,60 @@
                         guess.color = angular.copy(colors[0]);
                     }
                 }
+            }
+
+            function canGuess() {
+                var guessRemaining = vm.numberOfGuesses < maxGuesses;
+                var uniqColors = false;
+
+                if (guessRemaining) {
+                    uniqColors = _.map(vm.guesses[vm.numberOfGuesses].colors, function (color) {
+                        return color.color.name;
+                    });
+
+                    uniqColors = _.uniq(uniqColors).length === colorPerGuesses;
+                }
+
+                return uniqColors;
+            }
+
+            function guess() {
+                if (vm.numberOfGuesses < maxGuesses) {
+                    checkGuess();
+                }
+
+                vm.numberOfGuesses = Math.min(++vm.numberOfGuesses, maxGuesses);
+            }
+
+            function checkGuess() {
+                var colorAnswers = _.map(answers, function(answer){
+                    return answer.color.name;
+                });
+
+                for (var i = 0; i < colorPerGuesses; i++) {
+                    var correctColor = _.indexOf(colorAnswers, vm.guesses[vm.numberOfGuesses].colors[i].color.name) !== -1;
+
+                    if (correctColor) {
+                        vm.colorCorrection[vm.numberOfGuesses]++;
+                    }
+
+                   var correctColorPosition = _.some(answers, function(answer) {
+                        return answer.column === vm.guesses[vm.numberOfGuesses].colors[i].column 
+                            && answer.color.name === vm.guesses[vm.numberOfGuesses].colors[i].color.name;
+                    });
+
+                    if (correctColorPosition) {
+                        vm.colorPositionCorrection[vm.numberOfGuesses]++;
+                    }
+                }
+
+                vm.colorCorrection[vm.numberOfGuesses] -= vm.colorPositionCorrection[vm.numberOfGuesses];
+            }
+
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min)) + min;
             }
         }
     })();

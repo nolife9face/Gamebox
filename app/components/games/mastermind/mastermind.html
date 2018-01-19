@@ -1,13 +1,23 @@
 <div data-ng-controller="MastermindController as mastermind" flex layout="column">
     <div data-ng-repeat="(key, value) in mastermind.guesses" 
         class="mastermind-table" flex layout="row" layout-align="center center">
-        <div flex="20" class="mastermind-cell"></div>
+        <div flex="20" class="mastermind-cell" layout-align="center center">
+            <span data-ng-if="value.row < mastermind.numberOfGuesses">{{mastermind.colorCorrection[value.row]}}</span>
+        </div>
         <div flex="60" class="mastermind-guesses" layout="row" layout-align="space-around center">
-            <div flex="20" class="mastermind-guess" data-ng-class="guess.color.name"
+            <div flex="20" class="mastermind-guess"
+                    data-ng-class="value.row <= mastermind.numberOfGuesses ? guess.color.name : 'future-guess'"
                     data-ng-repeat="(color, guess) in value.colors"
                     data-ng-click="mastermind.switchColor(guess, value)">
             </div>
         </div>
-        <div flex="20" class="mastermind-cell"></div>
+        <div flex="20" class="mastermind-cell mastermind-corrects-position" layout="row" layout-align="center center">
+            <span data-ng-if="value.row < mastermind.numberOfGuesses">{{mastermind.colorPositionCorrection[value.row]}}</span>
+        </div>
+    </div>
+    <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" aria-label="doGuess" ng-click="mastermind.guess()" data-ng-disabled="!mastermind.canGuess()">
+            <span>Guess</span>
+        </md-button>
     </div>
 </div>
