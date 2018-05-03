@@ -18,7 +18,14 @@
         var total = req.body.total;
         var bonus = req.body.bonus;
         models.saveYahtzeeGame(total, bonus);
-        res.sendStatus(200);
+        res.sendStatus(204);
+    });
+
+    app.post('/api/saveMastermind', function(req, res) {
+        var hasWon = req.body.hasWon;
+        var numberOfGuesses = req.body.numberOfGuesses;
+        models.saveMastermindGame(hasWon, numberOfGuesses);
+        res.sendStatus(204);
     });
 
     app.get('/api/yahtzeeStats', function(req, res){

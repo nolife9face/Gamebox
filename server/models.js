@@ -3,6 +3,7 @@
     const Q = require('q')
 
     module.exports.saveYahtzeeGame = saveYahtzeeGame;
+    module.exports.saveMastermindGame = saveMastermindGame;
     module.exports.getYahtzeeStats = getYahtzeeStats;
 
     var yahtzeeGame = database.createModel('yahtzeeGame', {
@@ -16,8 +17,23 @@
         }
     });
 
+    var mastermindGame = database.createModel('mastermindGame', {
+        hasWon: {
+            type: Boolean,
+            required: true
+        },
+        numberOfGuesses: {
+            type: Number,
+            required: true
+        }
+    });
+
     function saveYahtzeeGame(total, bonus){
         yahtzeeGame.create({ totalScore: total, bonusGotten: bonus === 35 }, function (err, newThing) {});
+    }
+
+    function saveMastermindGame(hasWon, numberOfGuesses) {
+        mastermindGame.create({hasWon: hasWon, numberOfGuesses: numberOfGuesses}, function (err, newThing) {});
     }
 
     function getYahtzeeStats(){

@@ -5,7 +5,9 @@
             .module('games.mastermind')
             .controller('MastermindController', MastermindController);
     
-        function MastermindController() {
+        MastermindController.$inject = ['serverApi', 'dialogApi'];
+
+        function MastermindController(serverApi, dialogApi) {
             var vm = this;
 
             var maxGuesses = 12;
@@ -24,8 +26,8 @@
             vm.switchColor = switchColor;
             vm.canGuess = canGuess;
             vm.guess = guess;
+            vm.getAnswer = getAnswer;
             vm.saveGame = saveGame;
-
 
             initialize();
 
@@ -34,6 +36,13 @@
                 initializeGuesses();
                 initializeCorrections();
                 generateAnswer();
+            }
+
+            function newGame() {
+                vm.numberOfGuesses = 0;
+                vm.gameOver = false;
+                vm.hasWon = false;
+                vm.gameSaved = false;
             }
 
             function initializeColors() {
@@ -66,6 +75,7 @@
             }
 
             function initializeGuesses() {
+                vm.guesses = [];
                 var guess = {};
                 for (var i = 0; i < maxGuesses; i++) {
                     guess.row = i;
@@ -87,6 +97,7 @@
             }
 
             function generateAnswer() {
+                answers = [];
                 var copiedColors = angular.copy(colors);
                 for (var i = 0; i < colorPerGuesses; i++) {
                     var index = getRandomInt(0, copiedColors.length);
@@ -136,6 +147,16 @@
                 vm.gameOver = vm.hasWon || vm.numberOfGuesses === maxGuesses;
             }
 
+            function getAnswer() {
+                var result = _.reduce(answers, function(result, answer) {
+                    return result.concat(answer.color.name, ' ');
+                }, '');
+
+                result = result.concat('was the answer.')
+
+                return result;
+            }
+
             function saveGame(){
                 serverApi.post('http://localhost:8080/api/saveMastermind', {hasWon: vm.hasWon, numberOfGuesses: vm.numberOfGuesses})
                 .then(function(){
@@ -144,6 +165,8 @@
                         'Yes',
                         'No')
                         .then(function(){
+                            newGame();
+                            initialize();
                         },
                         function(){
                             vm.gameSaved =true;
