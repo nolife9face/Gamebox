@@ -15,12 +15,17 @@
 
             vm.numberOfGuesses = 0;
             vm.guesses = [];
+            vm.colorCorrection = [];
+            vm.colorPositionCorrection = [];
+            vm.gameOver = false;
+            vm.hasWon = false;
+            vm.gameSaved = false;
 
             vm.switchColor = switchColor;
             vm.canGuess = canGuess;
             vm.guess = guess;
-            vm.colorCorrection = [];
-            vm.colorPositionCorrection = [];
+            vm.saveGame = saveGame;
+
 
             initialize();
 
@@ -127,6 +132,23 @@
                 }
 
                 vm.numberOfGuesses = Math.min(++vm.numberOfGuesses, maxGuesses);
+
+                vm.gameOver = vm.hasWon || vm.numberOfGuesses === maxGuesses;
+            }
+
+            function saveGame(){
+                serverApi.post('http://localhost:8080/api/saveMastermind', {hasWon: vm.hasWon, numberOfGuesses: vm.numberOfGuesses})
+                .then(function(){
+                    dialogApi.confirm('New Game',
+                        'Do you wan\'t to play a new game?', 'mastermindNewGame',
+                        'Yes',
+                        'No')
+                        .then(function(){
+                        },
+                        function(){
+                            vm.gameSaved =true;
+                        });
+                });
             }
 
             function checkGuess() {
@@ -152,6 +174,8 @@
                 }
 
                 vm.colorCorrection[vm.numberOfGuesses] -= vm.colorPositionCorrection[vm.numberOfGuesses];
+
+                vm.hasWon = vm.colorPositionCorrection[vm.numberOfGuesses] === 4;
             }
 
             function getRandomInt(min, max) {

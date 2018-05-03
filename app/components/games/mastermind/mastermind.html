@@ -15,9 +15,15 @@
             <span data-ng-if="value.row < mastermind.numberOfGuesses">{{mastermind.colorPositionCorrection[value.row]}}</span>
         </div>
     </div>
-    <div layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" data-ng-if="!mastermind.gameOver">
         <md-button class="md-raised md-primary" aria-label="doGuess" ng-click="mastermind.guess()" data-ng-disabled="!mastermind.canGuess()">
             <span>Guess</span>
         </md-button>
+    </div>
+    <div layout="row" layout-align="center center" data-ng-if="mastermind.gameOver">
+        <md-button class="md-raised md-primary" aria-label="saveGame" ng-disabled="mastermind.gameSaved" ng-click="mastermind.saveGame()">
+            <span>Save Game</span>
+        </md-button>
+        <span>{{mastermind.hasWon ? 'You Won!' : 'You Lost'}}</span>
     </div>
 </div>
